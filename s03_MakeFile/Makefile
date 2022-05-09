@@ -1,8 +1,14 @@
 # 定义变量
-src=sub.o add.o mult.o div.o main.o
+# add.c sub.c main.c 都是文件名 
+src=$(wildcard ./*.c)
+objs=$(patsubst %.c, %.o, $(src))
 target=app
-$(target):$(src)
+$(target):$(objs)
 	$(CC) $^ -o $@
 
 %.o:%.c
 	$(CC) -c $< -o $@
+
+.PHONY:clean
+clean:
+	rm -f $(objs)

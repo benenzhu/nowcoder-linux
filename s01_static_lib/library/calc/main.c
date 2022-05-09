@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include "head.h"
 
+
+// g++ -c add.c div.c mult.c sub.c
+// ar rcs libcalc.a add.o sub.o mult.o div.o
 int main()
 {
-
     int a = 20;
     int b = 12;
     printf("a = %d, b = %d\n", a, b);
@@ -13,4 +15,3 @@ int main()
     printf("a / b = %f\n", divide(a, b));
     return 0;
 }
-
