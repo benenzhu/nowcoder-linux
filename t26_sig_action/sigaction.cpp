@@ -20,6 +20,8 @@
                 };
         - @oldact
         - @return: 0 / -1
+        // 每个信号只能标记一次信号的状态是什么
+        // 后面的信号是支持排队的？
 */
 #include <csignal>
 #include <stdio.h>
@@ -27,8 +29,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-void my_alarm(int num) { // int 表示编号是什么
-
+void my_wait(int num) { // int 表示编号是什么
     printf("捕捉到了信号 %d\n", num);
 }
 int main() {
@@ -36,7 +37,7 @@ int main() {
     struct sigaction act;
 
     act.sa_flags = 0;
-    act.sa_handler = my_alarm;
+    act.sa_handler = my_wait;
     sigemptyset(&act.sa_mask);
     auto sig_ret = sigaction(SIGALRM, &act, nullptr);
     // if (ret_sig == SIG_ERR) {

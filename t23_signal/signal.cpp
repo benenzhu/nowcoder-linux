@@ -26,13 +26,13 @@
 #include <unistd.h>
 
 // void sighandler_t(int);
-void my_alarm(int num) { // int 表示编号是什么
+void my_wait(int num) { // int 表示编号是什么
 
     printf("捕捉到了信号 %d\n", num);
 }
 int main() {
 
-    auto ret_sig = signal(SIGALRM, my_alarm);
+    auto ret_sig = signal(SIGALRM, my_wait);
     if (ret_sig == SIG_ERR) {
         perror("signal error");
         exit(-1);
